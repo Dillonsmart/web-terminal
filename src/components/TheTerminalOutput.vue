@@ -23,7 +23,7 @@ const messageClass = computed(() => {
 </script>
 
 <template>
-  <div class="text-white text-sm h-full">
+  <div class="text-white text-xs h-full">
     <div v-for="message in terminalStore.outputMessages" :key="message" class="whitespace-pre-wrap">
       <p :class="messageClass(message.type)" class="mb-1">
         <span v-if="!message.system">$ </span>

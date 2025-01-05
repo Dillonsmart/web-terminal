@@ -22,10 +22,13 @@ export const useCommandHandler = () => {
 
   // used to register other commands later
   const registerCommand = (name: string, handler: CommandHandler) => {
+    console.log('registerCommand', name, handler)
     commands[name] = handler
   }
 
   const handleCommand = (command: string) => {
+    console.log('handleCommand', command)
+    console.log(commands)
     const [name, ...args] = command.split(' ')
     const handler = commands[name]
 

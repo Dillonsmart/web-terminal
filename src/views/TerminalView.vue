@@ -8,7 +8,23 @@ import { useTerminalOutputStore } from '@/stores/terminalOutputStore.ts'
 
 const terminalStore = useTerminalOutputStore()
 
-onMounted(() => {
+const fetchVersion = async () => {
+  try {
+    const response = await fetch('/version.txt')
+    const version = await response.text()
+    return version.trim()
+  } catch (error) {
+    console.error('Failed to fetch version:', error)
+    return 'unknown'
+  }
+}
+
+onMounted(async () => {
+  const currentTimeStamp = new Date().toLocaleString()
+  const version = await fetchVersion()
+
+  terminalStore.addSystemOutputMessage(`v${version} Current time: ${currentTimeStamp}`)
+
   terminalStore.addSystemOutputMessage(' _    _      _\n' +
     '| |  | |    | |\n' +
     '| |  | | ___| | ___ ___  _ __ ___   ___\n' +
