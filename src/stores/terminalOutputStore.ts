@@ -21,7 +21,7 @@ export const useTerminalOutputStore = defineStore('terminalOutput', () => {
     })
   }
 
-  function clearOutputMessages() {
+  function clearOutput() {
     messages.value = []
   }
 
@@ -29,6 +29,6 @@ export const useTerminalOutputStore = defineStore('terminalOutput', () => {
     outputMessages: messages,
     addSystemOutputMessage,
     addUserInputMessage,
-    clearOutputMessages
+    clearOutput
   }
 });
