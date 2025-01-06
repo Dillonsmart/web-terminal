@@ -11,6 +11,20 @@ export const registerCommands = () => {
     terminalStore.addSystemOutputMessage(`Current date and time: ${currentDate}`, 'info')
   })
 
+  terminalCommandsStore.registerCommand('history', () => {
+    terminalStore.addSystemOutputMessage('Recent commands:', 'info')
+
+    if(terminalStore.getUserInputLength() === 0) {
+      terminalStore.addSystemOutputMessage('No commands in history', 'info')
+      return
+    } else {
+      const end: number = terminalStore.getUserInputLength() >= 5 ? 5 : terminalStore.getUserInputLength()
+      terminalStore.getUserInputHistory().slice(terminalStore.getUserInputLength() - end, terminalStore.getUserInputLength()).reverse().forEach((command, index) => {
+        terminalStore.addSystemOutputMessage(`${index + 1}: ${command}`, 'info')
+      })
+    }
+  })
+
   terminalCommandsStore.registerCommand('clear', () => {
     terminalStore.clearOutput()
   })

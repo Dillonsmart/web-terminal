@@ -4,6 +4,19 @@ import type { AvailableCommandTypes, Message } from '@/composables/useCommandHan
 
 export const useTerminalOutputStore = defineStore('terminalOutput', () => {
   const messages: Ref<Message[]> = ref([])
+  const userMessages: Ref<Message[]> = ref([])
+
+  function getPreviousUserInput(n: number = 0) {
+    return userMessages.value[getUserInputLength() - n]?.message
+  }
+
+  function getUserInputLength() {
+    return userMessages.value.length
+  }
+
+  function getUserInputHistory() {
+    return userMessages.value.map((message) => message.message)
+  }
 
   function addSystemOutputMessage(message: string, type: AvailableCommandTypes = 'info') {
     messages.value.push({
@@ -14,6 +27,10 @@ export const useTerminalOutputStore = defineStore('terminalOutput', () => {
   }
 
   function addUserInputMessage(message: string) {
+    userMessages.value.push({
+      message
+    })
+
     messages.value.push({
       system: false,
       message,
@@ -27,6 +44,10 @@ export const useTerminalOutputStore = defineStore('terminalOutput', () => {
 
   return {
     outputMessages: messages,
+    userMessages: userMessages,
+    getPreviousUserInput,
+    getUserInputLength,
+    getUserInputHistory,
     addSystemOutputMessage,
     addUserInputMessage,
     clearOutput

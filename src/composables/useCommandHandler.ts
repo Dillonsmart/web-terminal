@@ -4,7 +4,7 @@ import { useTerminalCommandsStore } from '@/stores/terminalCommandsStore.ts'
 export type Message = {
   system?: boolean
   message: string
-  type: AvailableCommandTypes
+  type?: AvailableCommandTypes
 }
 
 export type AvailableCommandTypes = 'info' | 'error' | 'success' | 'warning'

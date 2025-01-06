@@ -30,7 +30,7 @@ onMounted(async () => {
     '| |  | | ___| | ___ ___  _ __ ___   ___\n' +
     '| |/\\| |/ _ \\ |/ __/ _ \\| \'_ ` _ \\ / _ \\\n' +
     '\\  /\\  /  __/ | (_| (_) | | | | | |  __/\n' +
-    '\\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|')
+    ' \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|')
 
   terminalStore.addSystemOutputMessage('Welcome to WebTerminal!')
   terminalStore.addSystemOutputMessage('Type "help" to see available commands.')
